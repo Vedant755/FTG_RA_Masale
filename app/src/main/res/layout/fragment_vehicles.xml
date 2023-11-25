@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical"
-    android:layout_margin="10dp"
+    android:padding="10dp"
     tools:context=".Screens.VehiclesPage">
 
     <LinearLayout
@@ -68,22 +68,24 @@
             android:textColor="@color/dark_3"
             android:textStyle="normal" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/employee_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@drawable/login_edittext_back"
             android:layout_marginHorizontal="15dp"
-            android:inputType="textPersonName"
-            android:singleLine="true"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/login_edittext_back"
+            android:completionThreshold="1"
             android:fontFamily="@font/poppins_med"
-            android:textSize="16sp"
-            android:letterSpacing="0.1"
-            android:textColorHint="@color/darker_gray"
-            android:textColor="@color/dark_3"
             android:hint="Name"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
+            android:letterSpacing="0.1"
+            android:maxLines="1"
             android:paddingHorizontal="10dp"
-            android:layout_marginVertical="5dp"/>
+            android:textColor="@color/dark_3"
+            android:textColorHint="@color/darker_gray"
+            android:textSize="16sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -95,24 +97,24 @@
             android:textColor="@color/dark_3"
             android:textStyle="normal" />
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/vehicle_number"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@drawable/login_edittext_back"
             android:layout_marginHorizontal="15dp"
-            android:inputType="textPersonName"
-            android:singleLine="true"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/login_edittext_back"
+            android:completionThreshold="1"
             android:fontFamily="@font/poppins_med"
-            android:textSize="16sp"
-            android:textColorHint="@color/darker_gray"
-            android:textColor="@color/dark_3"
-            android:hint="DL01XY4562"
+            android:hint="Vehicle number"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName"
             android:letterSpacing="0.1"
-            android:maxLength="10"
+            android:maxLines="1"
             android:paddingHorizontal="10dp"
-            android:layout_marginVertical="5dp"/>
-
+            android:textColor="@color/dark_3"
+            android:textColorHint="@color/darker_gray"
+            android:textSize="16sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

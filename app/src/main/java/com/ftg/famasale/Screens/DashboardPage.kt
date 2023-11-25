@@ -64,10 +64,9 @@ class DashboardPage : Fragment() {
         }
 
         bind.vehicles.setOnClickListener{
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-//                .replace(R.id.container, Vehicles()).addToBackStack(null).commit()
-            Toast.makeText(requireContext(), "Coming Soon", Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, VehiclesPage()).addToBackStack(null).commit()
         }
 
         bind.logout.setOnClickListener {

@@ -22,8 +22,7 @@ class VehicleCheckInAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.employee_checkin_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.vehicle_check_in_tem, parent, false)
         return ViewHolder(view)
     }
 
