@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RA Masale</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dont_have_a">New User?\nClick <font color="#1565C0">Here</font> to Register!</string>
+
+</resources>

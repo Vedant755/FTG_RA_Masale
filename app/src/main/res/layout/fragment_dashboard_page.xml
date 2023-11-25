@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Screens.DashboardPage">
+
+    <FrameLayout
+        android:id="@+id/f1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:src="@drawable/logo"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/logout"
+            android:layout_width="30dp"
+            android:layout_margin="15dp"
+            android:clickable="true"
+            android:layout_height="30dp"
+            android:background="@drawable/img_2"
+            android:textColor="@color/gray_700"
+            android:layout_gravity="end"
+            android:focusable="true" />
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/f1"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:id="@+id/main1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/employees"
+                    android:layout_width="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="#A0FDC6"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:padding="20dp"
+                        android:src="@drawable/employee" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:text="Employees"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/dark_3"
+                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dispatch"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="#4DB6AC"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:padding="20dp"
+                        android:src="@drawable/dispatch" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="Dispatch"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/dark_3"
+                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/hr_department"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:layout_height="150dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="#DCE775"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:padding="20dp"
+
+                        android:src="@drawable/department" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="HR Department"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/dark_3"
+                        android:textSize="16sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/visitors"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardBackgroundColor="#7986CB"
+                    app:cardCornerRadius="10dp"
+
+                    >
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:padding="20dp"
+                        android:src="@drawable/visitor1" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="Visitors"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/dark_3"
+                        android:textSize="16sp"/>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/raw_material"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    app:cardBackgroundColor="#BA68C8"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:padding="20dp"
+                        android:src="@drawable/raw_material" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="Raw Material"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/dark_3"
+                        android:textSize="16sp"/>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/vehicles"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="#4FC3F7"
+                    app:cardCornerRadius="10dp">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:padding="20dp"
+                        android:src="@drawable/vehicle" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:gravity="center"
+                        android:text="Vehicle"
+                        android:layout_marginBottom="5dp"
+                        android:fontFamily="@font/poppins_bold"
+                        android:textColor="@color/dark_3"
+                        android:textSize="16sp"/>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
