@@ -9,12 +9,16 @@ import com.ftg.famasale.Models.EmployeeCheckOutResponse
 import com.ftg.famasale.Models.EmployeeId
 import com.ftg.famasale.Models.EmployeeVisitId
 import com.ftg.famasale.Models.GeneralResponse
+import com.ftg.famasale.Models.GetAllVisitorVisitsResponse
 import com.ftg.famasale.Models.GetEmployeesResponse
 import com.ftg.famasale.Models.GetDaprtmentsResponse
 import com.ftg.famasale.Models.LoginCred
 import com.ftg.famasale.Models.LoginResponse
 import com.ftg.famasale.Models.VehicleCheckOutId
 import com.ftg.famasale.Models.VehicleCheckoutData
+import com.ftg.famasale.Models.VisitorCheckInResponse
+import com.ftg.famasale.Models.VisitorId
+import com.ftg.famasale.Models.VisitorVisitData
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -67,4 +71,24 @@ interface Server {
 
     @GET("android/vehicle/visit") // 200
     fun getAllCheckedOutVehicles(): retrofit2.Call<AllCheckOutVehiclesResponse>
+
+    @GET("android/visitor")  // 200
+    fun getAllVisitors(): retrofit2.Call<GetAllVisitorVisitsResponse>
+
+    @POST("android/visitor/check-in") // 200
+    fun visitorCheckIn(
+        @Body data: VisitorVisitData
+    ): retrofit2.Call<VisitorCheckInResponse>
+
+    @PUT("android/visitor/check-out")
+    fun visitorCheckOut(
+        @Body visitorId: VisitorId
+    ): retrofit2.Call<GeneralResponse>
+
+    @PUT("android/visitor/cancel")  // 200
+    fun cancelVisitorVisit(
+        @Body visitorId: VisitorId
+    ): retrofit2.Call<GeneralResponse>
+
+
 }

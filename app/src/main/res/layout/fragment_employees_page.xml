@@ -6,7 +6,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:gravity="top"
-    android:layout_margin="10dp"
+    android:padding="10dp"
     tools:context=".Screens.EmployeesPage">
     <LinearLayout
         android:layout_width="match_parent"

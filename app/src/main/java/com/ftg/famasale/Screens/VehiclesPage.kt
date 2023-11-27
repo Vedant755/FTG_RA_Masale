@@ -92,6 +92,7 @@ class VehiclesPage : Fragment() {
                     val result = response.body()?.data
                     if(!result.isNullOrEmpty()) {
                         allEmployees = result as ArrayList<EmployeeDetails>
+//                        allEmployeesName = result.map { "${it.employee_name} (${it.Department.department_name})" } as ArrayList<String>
                         allEmployeesName = result.map { it.employee_name ?: it.employee_number.toString() } as ArrayList<String>
                     }
                     val adapter = ArrayAdapter(requireContext(), R.layout.simple_text_list_item, allEmployeesName.toTypedArray())

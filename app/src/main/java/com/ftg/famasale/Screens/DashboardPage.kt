@@ -36,31 +36,27 @@ class DashboardPage : Fragment() {
         }
 
         bind.dispatch.setOnClickListener{
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-//                .replace(R.id.container, DispatchPage()).addToBackStack(null).commit()
-            Toast.makeText(requireContext(), "Coming Soon", Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, DispatchPage()).addToBackStack(null).commit()
         }
 
         bind.hrDepartment.setOnClickListener{
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-//                .replace(R.id.container, HrDepartmentPage()).addToBackStack(null).commit()
-            Toast.makeText(requireContext(), "Coming Soon", Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, HrDepartmentPage()).addToBackStack(null).commit()
         }
 
         bind.visitors.setOnClickListener{
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-//                .replace(R.id.container, VisitorsPage()).addToBackStack(null).commit()
-            Toast.makeText(requireContext(), "Coming Soon", Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, VisitorsPage()).addToBackStack(null).commit()
         }
 
         bind.rawMaterial.setOnClickListener{
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
-//                .replace(R.id.container, RawMaterialPage()).addToBackStack(null).commit()
-            Toast.makeText(requireContext(), "Coming Soon", Toast.LENGTH_SHORT).show()
+            requireActivity().supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
+                .replace(R.id.container, RawMaterialPage()).addToBackStack(null).commit()
         }
 
         bind.vehicles.setOnClickListener{

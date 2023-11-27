@@ -1,14 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:orientation="vertical"
     tools:context=".Screens.VisitorsPage">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="1.0"
+        android:orientation="horizontal"
+        android:layout_marginVertical="5dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/show_new_visitor_form"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="New Visitor"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="16sp"
+            android:backgroundTint="@color/light_blue_800"
+            android:background="@drawable/login_edittext_back"
+            android:layout_marginEnd="5dp"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/show_all_visitors_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="All Visitors"
+            android:textAllCaps="false"
+            android:textColor="@color/darker_gray"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="16sp"
+            android:backgroundTint="@color/blue_50"
+            android:background="@drawable/login_edittext_back"
+            android:layout_marginStart="5dp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/visit_form_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:overScrollMode="never">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="top">
 
-</FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Employee"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <AutoCompleteTextView
+                android:id="@+id/employee_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Visitor Name"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/visitor_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Visitor Mobile"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/visitor_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="9876543210"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Visitor Address"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/visitor_address"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Address"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Visitor Gender"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <AutoCompleteTextView
+                android:id="@+id/visitor_gender"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Gender"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Reason"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/visit_reason"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Reason"
+                android:imeOptions="actionDone"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:gravity="top"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/create_visitor_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="15dp"
+                android:elevation="6dp"
+                android:background="@drawable/login_edittext_back"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Create Visitor"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/all_visits_rcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:overScrollMode="never"/>
+
+</LinearLayout>

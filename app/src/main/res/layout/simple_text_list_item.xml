@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
+    android:singleLine="true"
     android:textColor="@color/dark_3"
     android:background="@color/white"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
