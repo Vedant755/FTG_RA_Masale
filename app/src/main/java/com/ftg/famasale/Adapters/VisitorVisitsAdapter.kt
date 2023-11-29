@@ -51,7 +51,7 @@ class VisitorVisitsAdapter(
                 holder.status.setTextColor(Color.parseColor("#2E7D32"))
                 holder.cancel.visibility = View.GONE
             }
-            "rejected" -> {
+            "reject" -> {
                 holder.status.setTextColor(Color.parseColor("#D84315"))
                 holder.cancel.visibility = View.GONE
             }

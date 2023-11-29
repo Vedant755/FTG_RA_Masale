@@ -1,14 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:padding="10dp"
+    android:orientation="vertical"
     tools:context=".Screens.HrDepartmentPage">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
+        android:id="@+id/visit_form_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:overScrollMode="never">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="top">
 
-</FrameLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/candidate_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="5dp"
+                app:civ_border_width="1dp"
+                android:background="@drawable/add_screen_image_placeholder"
+                android:scaleType="centerCrop"
+                app:civ_border_color="@color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vecancy"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <AutoCompleteTextView
+                android:id="@+id/vecancy"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Vecancy"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Candidate Name"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/candidate_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Candidate Mobile"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/candidate_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="9876543210"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Candidate Address"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/candidate_address"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Address"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Candidate Email"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+            <EditText
+                android:id="@+id/candidate_email"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="xyz@xyz.com"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Candidate Gender"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <AutoCompleteTextView
+                android:id="@+id/candidate_gender"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Male/Female"
+                android:imeOptions="actionNext"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Candidate Qualification"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <AutoCompleteTextView
+                android:id="@+id/candidate_qualification"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Qualification"
+                android:imeOptions="actionDone"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/register_candidate_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginVertical="20dp"
+                android:layout_marginHorizontal="15dp"
+                android:elevation="6dp"
+                android:background="@drawable/login_edittext_back"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Register"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

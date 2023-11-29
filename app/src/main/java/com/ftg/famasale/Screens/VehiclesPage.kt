@@ -230,7 +230,6 @@ class VehiclesPage : Fragment() {
                     Toast.makeText(requireContext(), t.localizedMessage ?: "Something went wrong\nTry later", Toast.LENGTH_SHORT).show()
                 }
             }
-
         })
     }
 
