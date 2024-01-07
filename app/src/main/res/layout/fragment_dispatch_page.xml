@@ -1,14 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="top"
+    android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".Screens.DispatchPage">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginVertical="5dp"
+        android:orientation="horizontal"
+        android:weightSum="1.0">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/new_vehicle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="@color/light_blue_800"
+            android:fontFamily="@font/poppins_bold"
+            android:text="New Vehicle"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/all_vehicles"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="@color/blue_50"
+            android:fontFamily="@font/poppins_bold"
+            android:text="All Vehicles"
+            android:textAllCaps="false"
+            android:textColor="@color/darker_gray"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:overScrollMode="never"
+        android:visibility="gone" />
 
-</FrameLayout>
+    <ScrollView
+        android:id="@+id/new_vehicle_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginVertical="10dp"
+            android:layout_gravity="top">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vehicle Number*"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/vehicle_number"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="AB12CD5544"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Driver Name*"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/driver_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="Name"
+                android:imeOptions="actionNext"
+                android:inputType="textPersonName"
+                android:letterSpacing="0.1"
+                android:maxLines="1"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Driver Mobile*"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/driver_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:completionThreshold="1"
+                android:fontFamily="@font/poppins_med"
+                android:hint="987654321"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:letterSpacing="0.1"
+                android:maxLength="10"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="16sp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/dark_3"
+                android:textStyle="normal" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/login_edittext_back"
+                android:fontFamily="@font/poppins_med"
+                android:gravity="top"
+                android:hint="Vehicle description..."
+                android:inputType="textCapSentences"
+                android:letterSpacing="0.1"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:textColor="@color/dark_3"
+                android:textColorHint="@color/darker_gray"
+                android:textSize="16sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/check_out_button"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="15dp"
+                android:elevation="6dp"
+                android:background="@drawable/login_edittext_back"
+                android:backgroundTint="@color/green"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Add"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

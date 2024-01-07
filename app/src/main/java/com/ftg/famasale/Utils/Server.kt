@@ -4,6 +4,7 @@ import com.ftg.famasale.Models.AllCheckOutVehiclesResponse
 import com.ftg.famasale.Models.AllVehiclesResponse
 import com.ftg.famasale.Models.AllVisitsOfEmployeesResponse
 import com.ftg.famasale.Models.DepartmentId
+import com.ftg.famasale.Models.TruckRegisterResponse
 import com.ftg.famasale.Models.EmployeeCheckInResponse
 import com.ftg.famasale.Models.EmployeeCheckOutResponse
 import com.ftg.famasale.Models.EmployeeId
@@ -16,6 +17,7 @@ import com.ftg.famasale.Models.GetDaprtmentsResponse
 import com.ftg.famasale.Models.LoginCred
 import com.ftg.famasale.Models.LoginResponse
 import com.ftg.famasale.Models.RegisterCandidateResponse
+import com.ftg.famasale.Models.RequestedTruckData
 import com.ftg.famasale.Models.VehicleCheckOutId
 import com.ftg.famasale.Models.VehicleCheckoutData
 import com.ftg.famasale.Models.VisitorCheckInResponse
@@ -110,4 +112,13 @@ interface Server {
         @Part("job_id") jobId :RequestBody,
     ): retrofit2.Call<RegisterCandidateResponse>
 
+    @POST("android/dispatch/truck/register")   // 200
+    fun registerDispatchTruck(
+        @Body truckDetails: RequestedTruckData
+    ): retrofit2.Call<TruckRegisterResponse>
+
+    @POST("android/raw/truck/register")        // 200
+    fun registerRawMaterialTruck(
+        @Body truckDetails: RequestedTruckData
+    ): retrofit2.Call<TruckRegisterResponse>
 }
