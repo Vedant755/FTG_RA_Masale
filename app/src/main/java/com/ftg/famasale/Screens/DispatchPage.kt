@@ -1,14 +1,21 @@
 package com.ftg.famasale.Screens
 
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.ftg.famasale.Models.AllTruckListResponse
+import com.ftg.famasale.Models.EmployeeVisitDetails
+import com.ftg.famasale.Models.GetAllVisitorVisitsResponse
 import com.ftg.famasale.Models.RequestedTruckData
+import com.ftg.famasale.Models.TruckDetails
 import com.ftg.famasale.Models.TruckRegisterResponse
 import com.ftg.famasale.Models.VisitorCheckInResponse
+import com.ftg.famasale.Models.VisitorVisitDetails
 import com.ftg.famasale.R
 import com.ftg.famasale.Utils.Constant
 import com.ftg.famasale.Utils.LoadingDialog
@@ -35,6 +42,7 @@ class DispatchPage : Fragment() {
     private lateinit var bind: FragmentDispatchPageBinding
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var server: Server
+    private var allTrucks = ArrayList<TruckDetails>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,14 +59,31 @@ class DispatchPage : Fragment() {
             .build()
             .create(Server::class.java)
 
+        getAllTrucks()
         setActionListeners()
 
         return bind.root
     }
 
     private fun setActionListeners(){
+        bind.newVehicle.setOnClickListener {
+            bind.newVehicle.background.setColorFilter(Color.parseColor("#0277BD"), PorterDuff.Mode.SRC_ATOP)
+            bind.newVehicle.setTextColor(Color.parseColor("#FFFFFFFF"))
+            bind.allVehicles.background.setColorFilter(Color.parseColor("#FFE0F7FA"), PorterDuff.Mode.SRC_ATOP)
+            bind.allVehicles.setTextColor(Color.parseColor("#616161"))
+
+            bind.rcv.visibility = View.GONE
+            bind.newVehicleLayout.visibility = View.VISIBLE
+        }
+
         bind.allVehicles.setOnClickListener {
-            Toast.makeText(requireContext(), "Coming soon", Toast.LENGTH_SHORT).show()
+            bind.allVehicles.background.setColorFilter(Color.parseColor("#0277BD"), PorterDuff.Mode.SRC_ATOP)
+            bind.allVehicles.setTextColor(Color.parseColor("#FFFFFFFF"))
+            bind.newVehicle.background.setColorFilter(Color.parseColor("#FFE0F7FA"), PorterDuff.Mode.SRC_ATOP)
+            bind.newVehicle.setTextColor(Color.parseColor("#616161"))
+
+            bind.rcv.visibility = View.VISIBLE
+            bind.newVehicleLayout.visibility = View.GONE
         }
 
         bind.checkOutButton.setOnClickListener {
@@ -78,6 +103,38 @@ class DispatchPage : Fragment() {
                 addVehicle(driverName, driverMobile, vehicleNumber, gender, vehicleDesc)
             }
         }
+    }
+
+    private fun getAllTrucks(){
+        allTrucks.clear()
+        val response = server.getAllDispatchTrucks()
+        response.enqueue(object: Callback<AllTruckListResponse>{
+            override fun onResponse(
+                call: Call<AllTruckListResponse>,
+                response: Response<AllTruckListResponse>
+            ) {
+                if(response.code()==200){
+                    val result = response.body()?.data
+                    if(!result.isNullOrEmpty())
+                        allTrucks = result as ArrayList<TruckDetails>
+                }else if(response.code()==404){
+                    //Nothing
+                }else{
+                    val error = Gson().fromJson(response.errorBody()?.string(), AllTruckListResponse::class.java)
+                    Toast.makeText(requireContext(), error.message ?: "Something went wrong\nTry later", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<AllTruckListResponse>, t: Throwable) {
+                if (t is SocketTimeoutException) {
+                    getAllTrucks()
+                } else if (call.isCanceled) {
+                    getAllTrucks()
+                } else {
+                    Toast.makeText(requireContext(), t.localizedMessage ?: "Something went wrong\nTry later", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 
     private fun addVehicle(
@@ -102,6 +159,7 @@ class DispatchPage : Fragment() {
                     bind.driverMobile.setText("")
                     bind.vehicleNumber.setText("")
                     bind.description.setText("")
+                    getAllTrucks()
                 }else{
                     val error = Gson().fromJson(response.errorBody()?.string(), TruckRegisterResponse::class.java)
                     Toast.makeText(requireContext(), error.message ?: "Something went wrong\nTry later", Toast.LENGTH_SHORT).show()

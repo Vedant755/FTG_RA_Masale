@@ -1,6 +1,7 @@
 package com.ftg.famasale.Utils
 
 import com.ftg.famasale.Models.AllCheckOutVehiclesResponse
+import com.ftg.famasale.Models.AllTruckListResponse
 import com.ftg.famasale.Models.AllVehiclesResponse
 import com.ftg.famasale.Models.AllVisitsOfEmployeesResponse
 import com.ftg.famasale.Models.DepartmentId
@@ -121,4 +122,10 @@ interface Server {
     fun registerRawMaterialTruck(
         @Body truckDetails: RequestedTruckData
     ): retrofit2.Call<TruckRegisterResponse>
+
+    @GET("android/raw/truck")                  // 200
+    fun getAllRawMaterialTrucks():retrofit2.Call<AllTruckListResponse>
+
+    @GET("android/dispatch/truck")             // 200
+    fun getAllDispatchTrucks():retrofit2.Call<AllTruckListResponse>
 }
