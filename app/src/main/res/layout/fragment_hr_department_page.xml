@@ -42,24 +42,30 @@
                 android:textColor="@color/dark_3"
                 android:textStyle="normal" />
 
-            <AutoCompleteTextView
-                android:id="@+id/vecancy"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
-                android:background="@drawable/login_edittext_back"
-                android:completionThreshold="1"
-                android:fontFamily="@font/poppins_med"
-                android:hint="Vecancy"
-                android:imeOptions="actionNext"
-                android:inputType="textPersonName"
-                android:letterSpacing="0.1"
-                android:maxLines="1"
-                android:paddingHorizontal="10dp"
-                android:textColor="@color/dark_3"
-                android:textColorHint="@color/darker_gray"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/vecancy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:background="@drawable/search_back"
+                    android:backgroundTint="@color/blue_50"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:text="Select vecancy" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
@@ -192,23 +198,30 @@
                 android:textColor="@color/dark_3"
                 android:textStyle="normal" />
 
-            <AutoCompleteTextView
-                android:id="@+id/candidate_gender"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
-                android:background="@drawable/login_edittext_back"
-                android:completionThreshold="1"
-                android:fontFamily="@font/poppins_med"
-                android:hint="Male/Female"
-                android:imeOptions="actionNext"
-                android:letterSpacing="0.1"
-                android:maxLines="1"
-                android:paddingHorizontal="10dp"
-                android:textColor="@color/dark_3"
-                android:textColorHint="@color/darker_gray"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/candidateGender"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:background="@drawable/search_back"
+                    android:backgroundTint="@color/blue_50"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:text="Select Gender" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <TextView
@@ -222,23 +235,29 @@
                 android:textColor="@color/dark_3"
                 android:textStyle="normal" />
 
-            <AutoCompleteTextView
-                android:id="@+id/candidate_qualification"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="15dp"
-                android:layout_marginVertical="5dp"
-                android:background="@drawable/login_edittext_back"
-                android:completionThreshold="1"
-                android:fontFamily="@font/poppins_med"
-                android:hint="Qualification"
-                android:imeOptions="actionDone"
-                android:letterSpacing="0.1"
-                android:maxLines="1"
-                android:paddingHorizontal="10dp"
-                android:textColor="@color/dark_3"
-                android:textColorHint="@color/darker_gray"
-                android:textSize="16sp" />
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_gravity="end"
+                android:backgroundTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:id="@+id/candidateQualification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:background="@drawable/search_back"
+                    android:backgroundTint="@color/blue_50"
+                    android:textColor="@color/black"
+                    android:textAllCaps="true"
+                    android:singleLine="true"
+                    android:textSize="15sp"
+                    android:text="Select Qualification" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register_candidate_button"

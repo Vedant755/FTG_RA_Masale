@@ -5,7 +5,6 @@ import com.ftg.famasale.Models.AllTruckListResponse
 import com.ftg.famasale.Models.AllVehiclesResponse
 import com.ftg.famasale.Models.AllVisitsOfEmployeesResponse
 import com.ftg.famasale.Models.DepartmentId
-import com.ftg.famasale.Models.TruckRegisterResponse
 import com.ftg.famasale.Models.EmployeeCheckInResponse
 import com.ftg.famasale.Models.EmployeeCheckOutResponse
 import com.ftg.famasale.Models.EmployeeId
@@ -19,8 +18,11 @@ import com.ftg.famasale.Models.LoginCred
 import com.ftg.famasale.Models.LoginResponse
 import com.ftg.famasale.Models.RegisterCandidateResponse
 import com.ftg.famasale.Models.RequestedTruckData
+import com.ftg.famasale.Models.TruckRegisterResponse
+import com.ftg.famasale.Models.TruckRequestData
 import com.ftg.famasale.Models.VehicleCheckOutId
 import com.ftg.famasale.Models.VehicleCheckoutData
+import com.ftg.famasale.Models.VisitorApprovalOrRejectData
 import com.ftg.famasale.Models.VisitorCheckInResponse
 import com.ftg.famasale.Models.VisitorId
 import com.ftg.famasale.Models.VisitorVisitData
@@ -28,6 +30,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -36,6 +39,7 @@ import retrofit2.http.Part
 interface Server {
     @POST("common/auth/login")
     fun login(
+        @Header("User-Agent") userAgent: String,
         @Body loginCred: LoginCred
     ): retrofit2.Call<LoginResponse>
 
@@ -87,6 +91,9 @@ interface Server {
         @Body data: VisitorVisitData
     ): retrofit2.Call<VisitorCheckInResponse>
 
+
+
+
     @PUT("android/visitor/check-out")
     fun visitorCheckOut(
         @Body visitorId: VisitorId
@@ -96,6 +103,14 @@ interface Server {
     fun cancelVisitorVisit(
         @Body visitorId: VisitorId
     ): retrofit2.Call<GeneralResponse>
+
+    @PUT("android/visitor/approval")
+    fun visitorApprovalOrRejectByEmployee(
+        @Body data: VisitorApprovalOrRejectData
+    ): retrofit2.Call<GeneralResponse>
+
+    @GET("android/visitor/employee")
+    fun allVisitorByEmployeeId(): retrofit2.Call<GetAllVisitorVisitsResponse>
 
     @GET("android/job")  // 200
     fun getAllVacancies(): retrofit2.Call<GetAllVacanciesResponse>
@@ -117,7 +132,14 @@ interface Server {
     fun registerDispatchTruck(
         @Body truckDetails: RequestedTruckData
     ): retrofit2.Call<TruckRegisterResponse>
-
+    @PUT("android/raw/truck/update")
+    fun updateRawTruckStatus(
+        @Body truckrequest: TruckRequestData
+    ): retrofit2.Call<GeneralResponse>
+    @PUT("android/dispatch/truck/update")
+    fun updateDispatchTruckStatus(
+        @Body truckrequest: TruckRequestData
+    ): retrofit2.Call<GeneralResponse>
     @POST("android/raw/truck/register")        // 200
     fun registerRawMaterialTruck(
         @Body truckDetails: RequestedTruckData

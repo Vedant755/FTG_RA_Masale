@@ -3,5 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="dont_have_a">New User?\nClick <font color="#1565C0">Here</font> to Register!</string>
+    <string name="radio_pending">In (%1$d)</string>
+    <string name="radio_confirmed">Out (%1$d)</string>
+    <string name="radio_cancelled">Completed (%1$d)</string>
+
+    <string name="radio_pended">Pending (%1$d)</string>
+    <string name="radio_accept">Accept (%1$d)</string>
+    <string name="radio_cancel">Rejected (%1$d)</string>
 
 </resources>

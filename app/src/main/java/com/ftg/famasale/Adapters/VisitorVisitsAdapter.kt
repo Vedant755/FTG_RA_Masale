@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ftg.famasale.Models.CheckedOutVehicleDetails
 import com.ftg.famasale.Models.EmployeeDetails
@@ -15,7 +16,7 @@ import com.ftg.famasale.Models.VisitorVisitDetails
 import com.ftg.famasale.R
 
 class VisitorVisitsAdapter(
-    private val visits: List<VisitorVisitDetails>,
+    private var visits: List<VisitorVisitDetails>,
     private val checkOut: (VisitorVisitDetails) -> Unit,
     private val cancel: (VisitorVisitDetails) -> Unit
 ) : RecyclerView.Adapter<VisitorVisitsAdapter.ViewHolder>() {
@@ -46,7 +47,10 @@ class VisitorVisitsAdapter(
 
         when (visit.visitor_status.toString()){
             "null" -> {}
-            "pending" -> { holder.status.setTextColor(Color.parseColor("#F9A825")) }
+            "pending" -> {
+                holder.status.setTextColor(Color.parseColor("#F9A825"))
+                holder.cancel.visibility = View.VISIBLE
+            }
             "accept" -> {
                 holder.status.setTextColor(Color.parseColor("#2E7D32"))
                 holder.cancel.visibility = View.GONE
@@ -65,5 +69,25 @@ class VisitorVisitsAdapter(
         holder.cancel.setOnClickListener {
             cancel(visit)
         }
+    }
+    fun updateVisits(newVisits: List<VisitorVisitDetails>) {
+        val diffResult = DiffUtil.calculateDiff(
+            VisitorByEmployeeDiffCallback(
+                visits,
+                newVisits
+            )
+        )
+        visits = newVisits
+        diffResult.dispatchUpdatesTo(this)
+    }
+    class VisitorByEmployeeDiffCallback(private val oldList: List<VisitorVisitDetails>, private val newList: List<VisitorVisitDetails>) :
+        DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            oldList[oldItemPosition].visitor_id == newList[newItemPosition].visitor_id
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            oldList[oldItemPosition] == newList[newItemPosition]
     }
 }

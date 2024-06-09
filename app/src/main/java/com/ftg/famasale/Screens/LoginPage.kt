@@ -1,6 +1,7 @@
 package com.ftg.famasale.Screens
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -75,12 +76,14 @@ class LoginPage : Fragment() {
             .build()
             .create(Server::class.java)
 
-        val response = retrofit.login(LoginCred(password, username))
+        val response = retrofit.login("Android",LoginCred(password, username))
+
         response.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 loadingDialog.stopLoading()
                 if (response.code() == 200) {
                     val result = response.body()
+                    Log.d("LoginRes",result.toString())
                     if (result?.token.isNullOrBlank()) {
                         Toast.makeText(
                             requireContext(),
@@ -89,6 +92,7 @@ class LoginPage : Fragment() {
                         ).show()
                     } else {
                         sharedPrefManager.saveToken(result?.token)
+                        sharedPrefManager.saveAuthority(result?.authority)
                         sharedPrefManager.saveUserDetails(result?.data)
                         Toast.makeText(
                             requireContext(),
@@ -107,12 +111,9 @@ class LoginPage : Fragment() {
                 } else {
                     val error =
                         Gson().fromJson(response.errorBody()?.string(), LoginResponse::class.java)
-                    Toast.makeText(
-                        requireContext(),
-                        error.message ?: "Something went wrong\nTry later",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+
+                    error.message?.let { Log.e("Login", it) }
+                    Log.e("Whole Response", response.raw().body.toString())                }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {

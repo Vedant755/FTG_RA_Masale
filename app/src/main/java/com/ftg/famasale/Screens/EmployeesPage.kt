@@ -90,6 +90,7 @@ class EmployeesPage : Fragment() {
 
             showCheckIns()
         }
+
     }
 
     private fun getAllCheckedIns(viewing: Boolean){

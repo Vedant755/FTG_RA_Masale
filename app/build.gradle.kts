@@ -13,8 +13,8 @@ android {
         applicationId = "com.ftg.famasale"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "1.0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -68,4 +68,5 @@ dependencies {
     implementation ("androidx.room:room-runtime:2.6.0")
     implementation ("androidx.room:room-ktx:2.6.0")
     ksp ("androidx.room:room-compiler:2.6.0")
+    implementation ("com.github.dangiashish:StyledCardView:1.0.0")
 }

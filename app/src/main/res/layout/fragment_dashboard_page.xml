@@ -1,33 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#fafbff"
     tools:context=".Screens.DashboardPage">
+
 
     <FrameLayout
         android:id="@+id/f1"
         android:layout_width="match_parent"
         android:layout_height="70dp">
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageView"
+        <LinearLayout
+            android:id="@+id/productsSection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
             android:gravity="center"
-            android:src="@drawable/logo"
-            />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RA "
+                android:fontFamily="@font/poppins_bold"
+
+                android:textColor="@color/blue"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+
+                android:text="Masale"
+                android:textColor="#A61B40"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/logout"
-            android:layout_width="30dp"
+            android:layout_width="40dp"
             android:layout_margin="15dp"
             android:clickable="true"
-            android:layout_height="30dp"
-            android:background="@drawable/img_2"
+            android:layout_height="40dp"
+            android:background="@drawable/logout"
             android:textColor="@color/gray_700"
             android:layout_gravity="end"
             android:focusable="true" />
@@ -37,7 +61,7 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginVertical="40dp"
+        android:layout_marginVertical="20dp"
         android:overScrollMode="never">
 
         <LinearLayout
@@ -46,6 +70,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -54,23 +79,23 @@
                     android:layout_width="0dp"
                     android:layout_marginEnd="10dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
+
                     android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="#A0FDC6"
-                    app:cardCornerRadius="10dp">
+android:background="@drawable/dash_bg">
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:padding="20dp"
-                        android:src="@drawable/employee" />
+                        android:layout_height="80dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/company" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:gravity="center"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:text="Employees"
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/dark_3"
@@ -83,15 +108,18 @@
                     android:layout_height="150dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
+                    android:background="@drawable/dash_bg"
                     android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="#4DB6AC"
-                    app:cardCornerRadius="10dp">
+
+                   >
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:padding="20dp"
-                        android:src="@drawable/dispatch" />
+                        android:layout_height="80dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="10dp"
+
+                        android:src="@drawable/delivery" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -99,7 +127,7 @@
                         android:layout_gravity="bottom"
                         android:gravity="center"
                         android:text="Dispatch"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/dark_3"
                         android:textSize="16sp" />
@@ -109,6 +137,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/hr_department"
@@ -116,23 +146,22 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="10dp"
                     android:layout_height="150dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="#DCE775"
-                    app:cardCornerRadius="10dp">
+                    android:background="@drawable/dash_bg"                    >
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:layout_width="match_parent"
-                        android:layout_height="122dp"
-                        android:padding="20dp"
-                        android:src="@drawable/department" />
+                        android:layout_height="80dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/job_application" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:gravity="center"
                         android:text="Job Apply"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/dark_3"
                         android:textSize="16sp" />
@@ -145,16 +174,16 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="15dp"
-                    app:cardBackgroundColor="#7986CB"
-                    app:cardCornerRadius="10dp"
+                    android:background="@drawable/dash_bg"
 
                     >
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:padding="20dp"
-                        android:src="@drawable/visitor1" />
+                        android:layout_height="80dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/visitors" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -162,7 +191,7 @@
                         android:layout_gravity="bottom"
                         android:gravity="center"
                         android:text="Visitors"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/dark_3"
                         android:textSize="16sp"/>
@@ -173,6 +202,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/raw_material"
@@ -181,14 +211,14 @@
                     android:layout_weight="1"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="10dp"
-                    app:cardBackgroundColor="#BA68C8"
-                    app:cardCornerRadius="10dp">
+                    android:background="@drawable/dash_bg" >
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:padding="20dp"
-                        android:src="@drawable/raw_material" />
+                        android:layout_height="80dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/supply" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -196,7 +226,7 @@
                         android:layout_gravity="bottom"
                         android:gravity="center"
                         android:text="Raw Material"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/dark_3"
                         android:textSize="16sp"/>
@@ -208,21 +238,21 @@
                     android:layout_height="150dp"
                     android:layout_marginEnd="10dp"
                     android:layout_weight="1"
-                    app:cardBackgroundColor="#4FC3F7"
-                    app:cardCornerRadius="10dp">
+                    android:background="@drawable/dash_bg" >
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
-                        android:padding="20dp"
-                        android:src="@drawable/vehicle" />
+                        android:layout_height="80dp"
+                        android:padding="2dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/bycicle1" />
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:gravity="center"
                         android:text="Vehicle"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="15dp"
                         android:fontFamily="@font/poppins_bold"
                         android:textColor="@color/dark_3"
                         android:textSize="16sp"/>

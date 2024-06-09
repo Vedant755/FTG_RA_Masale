@@ -13,5 +13,6 @@ data class LoggedInUserDetails(
     val guard_name: String?,
     val guard_status: Boolean?,
     val guard_username: String?,
-    val updatedAt: String?
+    val updatedAt: String?,
+    val department_name: String
 )

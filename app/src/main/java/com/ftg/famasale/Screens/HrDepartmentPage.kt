@@ -2,8 +2,10 @@ package com.ftg.famasale.Screens
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import com.ftg.famasale.Models.GetAllVacanciesResponse
 import com.ftg.famasale.Models.JobDetail
 import com.ftg.famasale.Models.RegisterCandidateResponse
@@ -39,7 +42,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.net.SocketTimeoutException
+import java.nio.Buffer
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,21 +53,28 @@ class HrDepartmentPage : Fragment() {
     lateinit var memory: SharedPrefManager
     @Inject
     lateinit var interceptor: ServerCallInterceptor
-
+    private var idPhotoUri: Uri? = null
     private lateinit var bind: FragmentHrDepartmentPageBinding
     private lateinit var loadingDialog: LoadingDialog
     private lateinit var server: Server
-
+    private val contract = registerForActivityResult(ActivityResultContracts.TakePicture()) {
+        val file = File(requireActivity().applicationContext.filesDir, "camera_photo.png")
+        val requestFile = file.asRequestBody("image/png".toMediaTypeOrNull())
+        profilePictureFile = MultipartBody.Part.createFormData("profile", file.name, requestFile)
+        bind.candidateImage.setImageURI(imageUri)  // Use imageUri here
+        Toast.makeText(requireContext(), "Candidate Picture Captured", Toast.LENGTH_SHORT).show()
+    }
     private var jobs = ArrayList<JobDetail>()
     private var jobNames = ArrayList<String>()
     private var genders = arrayListOf("Male", "Female")
-    private var qualifications = arrayListOf("High-School", "Intermediate", "Graduate", "Post-Graduate")
+    private var qualifications = arrayListOf("5","8","10","12", "graduation", "post-graduation")
     private var profilePictureFile: MultipartBody.Part? = null
-
+    lateinit var imageUri : Uri
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+
         bind = FragmentHrDepartmentPageBinding.inflate(inflater, container, false)
         loadingDialog = LoadingDialog(requireActivity())
 
@@ -81,7 +93,6 @@ class HrDepartmentPage : Fragment() {
     }
 
     private fun getAllJobs(){
-        loadingDialog.startLoading()
 
         val response = server.getAllVacancies()
         response.enqueue(object : Callback<GetAllVacanciesResponse>{
@@ -89,7 +100,7 @@ class HrDepartmentPage : Fragment() {
                 call: Call<GetAllVacanciesResponse>,
                 response: Response<GetAllVacanciesResponse>
             ) {
-                loadingDialog.startLoading()
+
                 if(response.code()==200){
                     val result = response.body()?.data
                     if(!result.isNullOrEmpty()){
@@ -119,10 +130,11 @@ class HrDepartmentPage : Fragment() {
 
     private fun setActionListeners(){
         val adapter = ArrayAdapter(requireContext(), R.layout.simple_text_list_item, genders.toTypedArray())
+        val qualiAda = ArrayAdapter(requireContext(),R.layout.simple_text_list_item,qualifications.toTypedArray())
+        bind.candidateQualification.setAdapter(qualiAda)
         bind.candidateGender.setAdapter(adapter)
-
         bind.candidateImage.setOnClickListener {
-            checkPermissions()
+            showImagePickerOptions()
         }
 
         bind.registerCandidateButton.setOnClickListener {
@@ -133,7 +145,6 @@ class HrDepartmentPage : Fragment() {
             val gender = bind.candidateGender.text.toString()
             val qualification = bind.candidateQualification.text.toString()
             val jobName = bind.vecancy.text.toString()
-
             var jobId = ""
             try{
                 jobId = jobs.filter { it.job_name?.contains(jobName, true) == true || it.job_description?.toString()?.contains(jobName, true) == true }[0].job_id.toString()
@@ -170,6 +181,11 @@ class HrDepartmentPage : Fragment() {
         }
     }
 
+    private fun showToast(message: String) {
+        Log.d("TOAST_MESSAGE", message)
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
     private fun registerCandidate(
         nameBody: RequestBody,
         mobileBody: RequestBody,
@@ -180,6 +196,14 @@ class HrDepartmentPage : Fragment() {
         jobBody: RequestBody
     ) {
         loadingDialog.startLoading()
+        Log.d("API_REQUEST", "Name: ${nameBody.convertToString()}")
+        Log.d("API_REQUEST", "Mobile: ${mobileBody.convertToString()}")
+        Log.d("API_REQUEST", "Address: ${addressBody.convertToString()}")
+        Log.d("API_REQUEST", "Email: ${emailBody.convertToString()}")
+        Log.d("API_REQUEST", "Gender: ${genderBody.convertToString()}")
+        Log.d("API_REQUEST", "Qualification: ${qualificationBody.convertToString()}")
+        Log.d("API_REQUEST", "Job: ${jobBody.convertToString()}")
+
         val response = server.registerCandidateForJob(
             profilePictureFile!!,
             nameBody,
@@ -191,14 +215,14 @@ class HrDepartmentPage : Fragment() {
             jobBody
         )
 
-        response.enqueue(object: Callback<RegisterCandidateResponse>{
+        response.enqueue(object : Callback<RegisterCandidateResponse> {
             override fun onResponse(
                 call: Call<RegisterCandidateResponse>,
                 response: Response<RegisterCandidateResponse>
             ) {
                 loadingDialog.stopLoading()
-                if(response.code()==201){
-                    Toast.makeText(requireContext(), "Candidate registered successfully", Toast.LENGTH_SHORT).show()
+                if (response.code() == 201) {
+                    showToast("Candidate registered successfully")
                     bind.vecancy.setText("")
                     bind.candidateName.setText("")
                     bind.candidateAddress.setText("")
@@ -206,24 +230,46 @@ class HrDepartmentPage : Fragment() {
                     bind.candidateEmail.setText("")
                     bind.candidateGender.setText("")
                     bind.candidateQualification.setText("")
-                }else{
-                    val error = Gson().fromJson(response.errorBody()?.string(), RegisterCandidateResponse::class.java)
-                    Toast.makeText(requireContext(), error.message ?: "Something went wrong\nTry later", Toast.LENGTH_SHORT).show()
+                } else {
+                    val errorBody = response.errorBody()?.string()
+                    Log.d("error", "Error Response Body: $errorBody")
+
+                    val error = Gson().fromJson(errorBody, RegisterCandidateResponse::class.java)
+                    showToast(error.message ?: "Something went wrong\nTry later")
                 }
             }
 
             override fun onFailure(call: Call<RegisterCandidateResponse>, t: Throwable) {
-                if (t is SocketTimeoutException) {
-                    registerCandidate(nameBody, mobileBody, addressBody, emailBody, genderBody, qualificationBody, jobBody)
-                } else if (call.isCanceled) {
-                    registerCandidate(nameBody, mobileBody, addressBody, emailBody, genderBody, qualificationBody, jobBody)
+                if (t is SocketTimeoutException || call.isCanceled) {
+                    showToast("Request failed, retrying...")
+                    registerCandidate(
+                        nameBody, mobileBody, addressBody, emailBody, genderBody, qualificationBody, jobBody
+                    )
                 } else {
                     loadingDialog.stopLoading()
-                    Toast.makeText(requireContext(), t.localizedMessage ?: "Something went wrong\nTry later", Toast.LENGTH_SHORT).show()
+                    showToast(t.localizedMessage ?: "Something went wrong\nTry later")
                 }
             }
-
         })
+    }
+
+    private fun showImagePickerOptions() {
+        imageUri = createImageUri()!!
+        val options = arrayOf("Choose from Gallery", "Take Photo")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Select Option")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> checkPermissions()
+                    1 -> contract.launch(imageUri)
+                }
+            }
+            .show()
+    }
+    fun RequestBody.convertToString(): String {
+        val buffer = okio.Buffer()
+        writeTo(buffer)
+        return buffer.readUtf8()
     }
 
     private fun checkPermissions(){
@@ -240,6 +286,29 @@ class HrDepartmentPage : Fragment() {
             intent.type = "image/*"
             getImageFromGallery.launch(intent)
         }
+    }
+    private fun createImageUri(): Uri? {
+        val fileName = "camera_photo.png"
+        val image = File(requireContext().applicationContext.filesDir, fileName)
+
+        try {
+            if (!image.exists()) {
+                if (!image.createNewFile()) {
+                    throw IOException("Failed to create the file: $fileName")
+                }
+            }
+            idPhotoUri = FileProvider.getUriForFile(
+                requireContext().applicationContext,
+                "com.ftg.famasale.fileProvider",
+                image
+            )
+            Log.d("ID_PHOTO_URI", "ID Photo URI: $idPhotoUri")
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return null
+        }
+
+        return idPhotoUri
     }
 
     private val getImageFromGallery =

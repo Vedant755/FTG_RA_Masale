@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.marginStart
 import com.ftg.famasale.R
 import com.ftg.famasale.Utils.SharedPrefManager
 import com.ftg.famasale.databinding.FragmentDashboardPageBinding
@@ -18,14 +19,33 @@ class DashboardPage : Fragment() {
     @Inject
     lateinit var sharedPrefManager: SharedPrefManager
     private lateinit var bind: FragmentDashboardPageBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         bind = FragmentDashboardPageBinding.inflate(inflater, container, false)
         setActionListeners()
+        setVisibility()
         return bind.root
+    }
+    private fun setVisibility() {
+        val department = sharedPrefManager.getUserDetails().department_name
+        val viewsToHide = mutableSetOf<View>()
+
+        when (department) {
+            "DISPATCH" -> {
+                viewsToHide.addAll(listOf(bind.employees, bind.hrDepartment, bind.visitors, bind.vehicles, bind.rawMaterial))
+            }
+            "RawMaterials" -> {
+                viewsToHide.addAll(listOf(bind.employees, bind.hrDepartment, bind.visitors, bind.vehicles, bind.dispatch))
+            }
+        }
+
+        if (sharedPrefManager.getAuthority()!!.contains("employee")) {
+            viewsToHide.addAll(listOf(bind.employees, bind.hrDepartment, bind.rawMaterial, bind.vehicles, bind.dispatch))
+        }
+
+        viewsToHide.forEach { it.visibility = View.GONE }
     }
 
     private fun setActionListeners() {

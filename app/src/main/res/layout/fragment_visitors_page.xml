@@ -40,7 +40,67 @@
             android:backgroundTint="@color/blue_50"
             android:background="@drawable/login_edittext_back"
             android:layout_marginStart="5dp"/>
+        <ImageView
+            android:id="@+id/refresh_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/refresh"
+            android:visibility="gone" />
     </LinearLayout>
+    <RadioGroup
+        android:id="@+id/filterVisitRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:visibility="gone">
+
+        <!-- Pending RadioButton -->
+        <RadioButton
+            android:id="@+id/radioPended"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="@color/yellow"
+            android:buttonTint="@color/white"
+            android:text="Pending"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <!-- Confirmed RadioButton -->
+        <RadioButton
+            android:id="@+id/radioAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="@color/green"
+            android:buttonTint="@color/white"
+            android:text="Accept"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <!-- Cancelled RadioButton -->
+        <RadioButton
+            android:id="@+id/radioReject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/login_edittext_back"
+            android:backgroundTint="@color/red"
+            android:buttonTint="@color/white"
+            android:singleLine="true"
+            android:textSize="12sp"
+            android:text="Reject(10)"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </RadioGroup>
+
 
     <ScrollView
         android:id="@+id/visit_form_layout"
